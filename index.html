@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Jay Dhobale Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an engineer's review board. Each case study is a pinned sheet of product mockups, marked up with yellow annotation pins. */
+:root{
+  --paper:#EEF0EB; --sheet:#FFFFFF; --ink:#15181C; --muted:#5B6168; --line:#D8DBD3; --soft:#F6F7F3;
+  --mark:#F4B400; --mark-ink:#15181C; --link:#2350D8;
+  --ok:#1E8A4C; --ok-bg:#E3F3E9; --warn:#B26A00; --warn-bg:#FCF0D9; --crit:#C42B2B; --crit-bg:#FBE4E2; --info:#2D5BC9; --info-bg:#E4EBFB;
+  --term:#101317; --term-ink:#D7DCD4; --term-dim:#7C848C;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Geist", "Helvetica Neue", Arial, sans-serif;
+  --mono:"Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --shadow:0 1px 0 rgba(20,24,28,.04), 0 12px 32px -18px rgba(20,24,28,.28);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F1113; --sheet:#181B1E; --ink:#ECEEE9; --muted:#9BA1A7; --line:#2A2E32; --soft:#1F2326;
+  --mark:#F4B400; --mark-ink:#15181C; --link:#8FA8FF;
+  --ok:#5BD08B; --ok-bg:#16301F; --warn:#F0B44C; --warn-bg:#33270F; --crit:#FF7A72; --crit-bg:#3A1A18; --info:#8FA8FF; --info-bg:#1A2440;
+  --shadow:0 1px 0 rgba(0,0,0,.3), 0 14px 34px -18px rgba(0,0,0,.7); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0F1113; --sheet:#181B1E; --ink:#ECEEE9; --muted:#9BA1A7; --line:#2A2E32; --soft:#1F2326;
+  --mark:#F4B400; --mark-ink:#15181C; --link:#8FA8FF;
+  --ok:#5BD08B; --ok-bg:#16301F; --warn:#F0B44C; --warn-bg:#33270F; --crit:#FF7A72; --crit-bg:#3A1A18; --info:#8FA8FF; --info-bg:#1A2440;
+  --shadow:0 1px 0 rgba(0,0,0,.3), 0 14px 34px -18px rgba(0,0,0,.7); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+a{color:var(--link);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--mark);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.02em}
+p{margin:0}
+.mono{font-family:var(--mono)}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* nav */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:56px}
+.logo{font:700 17px/1 var(--display);color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo i{width:22px;height:22px;border-radius:50%;background:var(--mark);display:inline-grid;place-items:center;font:600 11px/1 var(--mono);color:var(--mark-ink);font-style:normal}
+nav.top ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:14px}
+nav.top ul a{color:var(--muted);text-decoration:none}
+nav.top ul a:hover{color:var(--ink)}
+@media (max-width:560px){nav.top ul li.hide-s{display:none}}
+
+/* hero */
+.hero{padding-block:72px 56px}
+.hero-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:56px;align-items:end}
+.hero h1{font-size:clamp(42px,6.4vw,84px);line-height:.98;font-weight:800}
+.hero h1 .hl{background:linear-gradient(transparent 62%, var(--mark) 62%, var(--mark) 92%, transparent 92%);padding:0 .06em;color:var(--ink)}
+.hero .lede{font-size:19px;color:var(--muted);max-width:56ch;margin-top:24px}
+.facts{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.facts div{padding:16px 0;border-bottom:1px solid var(--line);min-width:0}
+.facts div:nth-child(odd){padding-right:16px}
+.facts b{display:block;font:700 22px/1.15 var(--display)}
+.facts span{font-size:13px;color:var(--muted)}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr;gap:32px}.hero{padding-block:48px 40px}}
+
+/* index */
+.index{border-top:1px solid var(--ink);margin-top:8px}
+.index a{display:grid;grid-template-columns:2fr 3fr 2fr 70px;gap:20px;padding:18px 0;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;align-items:baseline}
+.index a:hover .t{text-decoration:underline;text-decoration-color:var(--mark);text-decoration-thickness:3px}
+.index .t{font:700 22px/1.2 var(--display)}
+.index .d{color:var(--muted);font-size:15px}
+.index .s,.index .y{font:400 13px/1.4 var(--mono);color:var(--muted)}
+.index .y{text-align:right}
+@media (max-width:760px){.index a{grid-template-columns:1fr auto;gap:4px 12px}.index .d{grid-column:1/-1}.index .s{grid-column:1/-1}.index .y{grid-row:1;grid-column:2}}
+
+/* case study */
+section.case{padding-block:96px 24px}
+.case-head{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:end;margin-bottom:40px}
+.case-head h2{font-size:clamp(36px,5vw,60px);line-height:1;font-weight:800;margin-top:14px}
+.case-head p.sum{font-size:18px;color:var(--muted);margin-top:16px;max-width:58ch}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;font-size:14px;border-left:1px solid var(--line);padding-left:20px}
+.meta dt{font:500 12px/1.7 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.meta dd{margin:0;min-width:0}
+@media (max-width:860px){.case-head{grid-template-columns:1fr;gap:24px}}
+
+.block{margin-top:56px}
+.block-head{display:flex;gap:24px;align-items:baseline;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
+.block-head h3{font-size:26px;font-weight:700}
+.block-head p{color:var(--muted);max-width:52ch;font-size:15px}
+.board{background:var(--sheet);border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow);min-width:0}
+.board.tint{background:var(--soft)}
+@media (max-width:560px){.board{padding:16px;border-radius:14px}}
+.caption{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px;font-size:13px;color:var(--muted)}
+.caption b{color:var(--ink);font-weight:600}
+
+/* pins + notes */
+.pin{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--mark);color:var(--mark-ink);font:600 11px/1 var(--mono);flex:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--mark) 30%,transparent);vertical-align:middle}
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.note{background:var(--sheet);border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-width:0}
+.note h4{margin:0 0 6px;display:flex;gap:10px;align-items:center;font:600 15px/1.3 var(--body)}
+.note p{color:var(--muted);font-size:14px;line-height:1.5}
+.note .fix{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--ink)}
+.note .fix::before{content:"Fix  ";font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ok)}
+@media (max-width:860px){.notes{grid-template-columns:1fr}}
+
+/* product UI (mock) primitives */
+.win{background:var(--sheet);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:12px;line-height:1.45;color:var(--ink);min-width:0}
+.win .bar{display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--line);background:var(--soft)}
+.win .url{flex:1;min-width:0;background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:3px 8px;font:400 10.5px/1.3 var(--mono);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.win .bar .lg{font:700 11px/1 var(--display);display:flex;align-items:center;gap:5px;white-space:nowrap}
+.win .bar .lg::before{content:"";width:9px;height:9px;border-radius:3px;background:var(--ok)}
+.win .body{padding:14px}
+.ui-h{font:600 14px/1.25 var(--body);margin-bottom:2px}
+.ui-sub{color:var(--muted);font-size:11px}
+.field{border:1px solid var(--line);border-radius:7px;padding:7px 9px;font:400 11px/1.3 var(--mono);color:var(--muted);background:var(--soft);margin-top:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn{display:inline-flex;align-items:center;gap:6px;border-radius:7px;padding:6px 11px;font:600 11px/1 var(--body);border:1px solid var(--line);background:var(--sheet);color:var(--ink)}
+.btn.pri{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:5px;border-radius:99px;padding:2px 8px;font:600 10px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.chip.crit{background:var(--crit-bg);color:var(--crit)} .chip.warn{background:var(--warn-bg);color:var(--warn)}
+.chip.info{background:var(--info-bg);color:var(--info)} .chip.ok{background:var(--ok-bg);color:var(--ok)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .k{font:400 11px/1.3 var(--mono);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prog{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:10px}
+.prog i{display:block;height:100%;background:var(--ink);border-radius:99px}
+.code{font:400 11px/1.6 var(--mono);background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px;white-space:pre;overflow-x:auto}
+
+/* flow strip */
+.flow{display:flex;gap:18px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
+.flow > figure{margin:0;flex:0 0 250px;scroll-snap-align:start;display:flex;flex-direction:column;gap:10px;min-width:0}
+.flow .win{height:300px}
+.flow figcaption{font-size:13px;color:var(--muted)}
+.flow figcaption b{display:flex;align-items:center;gap:8px;color:var(--ink);font-weight:600;margin-bottom:2px}
+.flow figcaption b span{font:500 11px/1 var(--mono);color:var(--muted)}
+.arrow{flex:0 0 18px;align-self:center;margin-top:-40px;color:var(--muted);font:400 18px/1 var(--mono)}
+
+/* problem map */
+.pmap{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+@media (max-width:860px){.pmap{grid-template-columns:1fr}}
+.stage{display:flex;align-items:center;gap:10px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;margin-top:8px;font:400 11px/1.3 var(--mono)}
+.stage.bad{border-color:color-mix(in srgb,var(--crit) 45%,var(--line));background:var(--crit-bg)}
+.stage .grow{flex:1;min-width:0}
+.hot{outline:2px dashed var(--mark);outline-offset:3px;border-radius:8px}
+
+/* recording */
+.rec{display:grid;grid-template-columns:1fr 280px;gap:22px;align-items:start}
+@media (max-width:860px){.rec{grid-template-columns:1fr}}
+.rec-top{display:flex;align-items:center;gap:10px;margin-bottom:12px;font:500 12px/1 var(--mono);color:var(--muted)}
+.rec-dot{width:9px;height:9px;border-radius:50%;background:var(--crit);animation:blink 1.2s steps(2) infinite}
+@keyframes blink{50%{opacity:.2}}
+.rec .win{min-height:340px}
+.find{display:flex;gap:10px;align-items:center;padding:9px 10px;border:1px solid var(--line);border-radius:8px;margin-top:8px;transition:opacity .35s, transform .35s, background .35s}
+.find.off{opacity:0;transform:translateY(6px)}
+.find.fixed{background:var(--ok-bg);border-color:color-mix(in srgb,var(--ok) 40%,var(--line))}
+.find .grow{flex:1;min-width:0}
+.find .grow b{display:block;font-weight:600;font-size:11.5px}
+.find .grow span{font:400 10.5px/1.3 var(--mono);color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bars{margin-top:14px;padding:10px;border:1px dashed var(--line);border-radius:8px;transition:opacity .4s}
+.bars .lbl{display:flex;justify-content:space-between;font:400 10.5px/1.3 var(--mono);color:var(--muted);margin-top:6px}
+.bars .b{height:8px;border-radius:4px;margin-top:3px;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:4px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:24px 1fr;gap:10px;padding:10px 12px;border-radius:10px;font-size:14px;color:var(--muted);transition:background .3s,color .3s}
+.steps li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);font:500 11px/1 var(--mono)}
+.steps li.on{background:var(--soft);color:var(--ink)}
+.steps li.on::before{background:var(--mark);border-color:var(--mark);color:var(--mark-ink)}
+.steps li small{display:block;font-size:12.5px;color:var(--muted)}
+.ctrl{display:flex;gap:8px;margin-top:14px}
+.ctrl button{font:500 13px/1 var(--body);padding:9px 14px;border-radius:99px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);cursor:pointer}
+.ctrl button:hover{border-color:var(--ink)}
+.cursor{position:absolute;width:16px;height:16px;pointer-events:none;transition:left .7s ease, top .7s ease, opacity .3s;opacity:0;z-index:2}
+.cursor svg{display:block}
+
+/* close-up variants */
+.zoom{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:860px){.zoom{grid-template-columns:1fr}}
+.fcard{border-radius:12px;padding:16px;border:1px solid var(--line);background:var(--sheet);font-size:13px;min-width:0}
+.fcard.crit{border-color:color-mix(in srgb,var(--crit) 55%,var(--line));box-shadow:inset 4px 0 0 var(--crit)}
+.fcard.warn{box-shadow:inset 4px 0 0 var(--warn)}
+.fcard.info{box-shadow:inset 4px 0 0 var(--line)}
+.fcard h5{margin:10px 0 4px;font:600 15px/1.3 var(--body)}
+.fcard .m{font:400 11.5px/1.5 var(--mono);color:var(--muted);overflow-wrap:anywhere}
+.fcard .acts{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.axis{display:flex;align-items:center;gap:12px;margin-top:20px;font:500 12px/1 var(--mono);color:var(--muted)}
+.axis i{flex:1;height:1px;background:var(--muted);position:relative}
+.axis i::before,.axis i::after{content:"";position:absolute;top:-4px;border:4.5px solid transparent}
+.axis i::before{left:-2px;border-right-color:var(--muted);border-left:0}
+.axis i::after{right:-2px;border-left-color:var(--muted);border-right:0}
+
+/* states */
+.states{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:1000px){.states{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.states{grid-template-columns:1fr}}
+.states figure{margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.states .win{height:230px}
+.states figcaption{font-size:13px;color:var(--muted)}
+.states figcaption b{color:var(--ink);display:block;font-weight:600}
+.center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%;gap:8px;padding:10px}
+.ico{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:600 18px/1 var(--mono)}
+.skel{height:10px;border-radius:5px;background:linear-gradient(90deg,var(--line),var(--soft),var(--line));background-size:200% 100%;animation:sh 1.4s linear infinite;margin-top:9px}
+@keyframes sh{to{background-position:-200% 0}}
+
+.term{background:var(--term);color:var(--term-ink);border-radius:12px;padding:16px 18px;font:400 12.5px/1.7 var(--mono);overflow-x:auto;white-space:pre;min-width:0}
+.term .d{color:var(--term-dim)} .term .r{color:#FF8A80} .term .g{color:#7EE2A8} .term .y{color:#F4C542}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+
+/* outcome strip */
+.outcome{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--ink);margin-top:56px}
+.outcome div{padding:20px 20px 20px 0;border-bottom:1px solid var(--line);min-width:0}
+.outcome b{display:block;font:800 34px/1 var(--display);margin-bottom:8px}
+.outcome span{color:var(--muted);font-size:14px}
+@media (max-width:760px){.outcome{grid-template-columns:1fr}}
+
+/* courtroom pipeline */
+.pipe{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:8px}
+.pnode{flex:0 0 150px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--sheet);font-size:12.5px;min-width:0}
+.pnode b{display:block;font-weight:600;font-size:13.5px;margin:6px 0 3px}
+.pnode span{color:var(--muted)}
+.pnode.src{background:var(--soft)}
+.pnode.judge{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.plink{flex:0 0 26px;align-self:center;height:1px;background:var(--muted);position:relative}
+.plink::after{content:"";position:absolute;right:-1px;top:-4px;border:4.5px solid transparent;border-left-color:var(--muted);border-right:0}
+.fork{display:flex;flex-direction:column;gap:10px;flex:0 0 150px}
+.fork .pnode{flex:1}
+.argcols{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.arg{border:1px solid var(--line);border-radius:8px;padding:10px;min-width:0}
+.arg .t{font:600 10px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.arg p{margin-top:6px;font-size:11.5px}
+.cite{font:400 10.5px/1.4 var(--mono);color:var(--link);margin-top:6px;display:block}
+.conf{display:flex;align-items:center;gap:10px;margin-top:12px}
+.conf .track{flex:1;height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.conf .track i{display:block;height:100%;border-radius:4px}
+.conf b{font:600 13px/1 var(--mono)}
+
+/* bert */
+.bert{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:860px){.bert{grid-template-columns:1fr}}
+.tok{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.tok span{font:400 11px/1 var(--mono);padding:5px 7px;border-radius:5px;border:1px solid var(--line);background:var(--soft)}
+.tok span.r{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* other + about */
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media (max-width:760px){.cards{grid-template-columns:1fr}}
+.wcard{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--sheet);min-width:0}
+.wcard h3{font-size:22px;font-weight:700;margin:10px 0 8px}
+.wcard p{color:var(--muted);font-size:15px}
+.about{display:grid;grid-template-columns:1fr 1.4fr;gap:48px}
+@media (max-width:860px){.about{grid-template-columns:1fr;gap:28px}}
+.tl{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.tl li{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.tl li .when{font:400 13px/1.5 var(--mono);color:var(--muted)}
+.tl li b{display:block;font-weight:600}
+.tl li span{color:var(--muted);font-size:14.5px}
+@media (max-width:560px){.tl li{grid-template-columns:1fr;gap:4px}}
+.skills{display:grid;gap:12px;margin-top:22px}
+.skills div{display:grid;grid-template-columns:130px 1fr;gap:12px;font-size:14px}
+.skills dt{font:500 12px/1.6 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+@media (max-width:560px){.skills div{grid-template-columns:1fr;gap:2px}}
+
+footer{margin-top:110px;background:var(--term);color:var(--term-ink)}
+footer .wrap{padding-block:72px 48px}
+footer h2{font-size:clamp(36px,5.5vw,68px);font-weight:800;line-height:1;color:var(--term-ink)}
+footer h2 .hl{color:var(--mark)}
+.contact{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px;border-top:1px solid #2A2F35}
+.contact div{padding-top:16px;min-width:0}
+.contact .eyebrow{color:var(--term-dim)}
+.contact p{margin-top:8px;font-size:15px;overflow-wrap:anywhere}
+.contact a{color:var(--term-ink)}
+.copy{margin-top:10px;font:500 12px/1 var(--mono);background:transparent;border:1px solid #3A4048;color:var(--term-ink);border-radius:99px;padding:7px 12px;cursor:pointer}
+@media (max-width:860px){.contact{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.contact{grid-template-columns:1fr}}
+.fine{margin-top:48px;font:400 12px/1.6 var(--mono);color:var(--term-dim)}
+
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="top" aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="#top"><i>JD</i>Jay Dhobale</a>
+    <ul>
+      <li><a href="#mongo-doctor">Work</a></li>
+      <li class="hide-s"><a href="#other">More</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Data engineer · Dublin, Ireland</p>
+        <h1 style="margin-top:18px">I build data systems that <span class="hl">show their work.</span></h1>
+        <p class="lede">Two years building and fixing ETL pipelines at Alter Domus. Since then, tools and AI systems that prove each answer: database fixes checked with before-and-after query plans, and AI rulings that report their own confidence.</p>
+      </div>
+      <div class="facts">
+        <div><b>First Class</b><span>BSc (Hons) Computing, Data Analytics &amp; Big Data, DBS 2026</span></div>
+        <div><b>2 years</b><span>Data Engineer Intern, Alter Domus</span></div>
+        <div><b>Python · SQL · Java</b><span>Airflow, Kafka, Snowflake, AWS</span></div>
+        <div><b>GenAI</b><span>RAG, multi-agent LLMs, LangGraph, FAISS</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:64px">
+      <p class="eyebrow" style="margin-bottom:14px">Selected work</p>
+      <div class="index">
+        <a href="#mongo-doctor"><span class="t">Mongo Doctor</span><span class="d">Finds MongoDB performance problems, applies fixes, and proves each one with explain().</span><span class="s">Node.js · MongoDB · Docker · LLM</span><span class="y">2026</span></a>
+        <a href="#courtroom"><span class="t">Autonomous Courtroom</span><span class="d">A 7-agent AI pipeline that argues both sides of a case before it rules.</span><span class="s">RAG · NVIDIA NIM · Llama 3.1 70B</span><span class="y">2026</span></a>
+        <a href="#bert"><span class="t">MiniBioClinicalBERT</span><span class="d">Final-year project: a transformer that classifies clinical text, with governance built into the pipeline.</span><span class="s">PyTorch · Hugging Face</span><span class="y">2025–26</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ MONGO DOCTOR ============ -->
+<section class="case" id="mongo-doctor">
+  <div class="wrap">
+    <div class="case-head">
+      <div>
+        <p class="eyebrow">Case study · Hackathon build</p>
+        <h2>Mongo Doctor</h2>
+        <p class="sum">Slow MongoDB queries are hard to diagnose, and a wrong index can make things worse. Mongo Doctor scans a database, explains what's wrong in plain language, applies a fix, and measures the query again so you can see whether it actually helped. Every change can be undone.</p>
+      </div>
+      <dl class="meta">
+        <dt>Role</dt><dd>Solo: design, backend, CLI</dd>
+        <dt>Stack</dt><dd>Node.js, Express, MongoDB, Docker, NVIDIA-hosted LLM</dd>
+        <dt>When</dt><dd>October 2026</dd>
+        <dt>Proof</dt><dd>25 unit tests, CI gate, explain() before/after</dd>
+      </dl>
+    </div>
+
+    <!-- Problem map -->
+    <div class="block">
+      <div class="block-head">
+        <h3>Where the problems show up</h3>
+        <p>A typical slow query, profiled. These three issues are what Mongo Doctor looks for first.</p>
+      </div>
+      <div class="board tint">
+        <div class="pmap">
+          <div class="win">
+            <div class="bar"><span class="url">mongosh · shop.orders.explain("executionStats")</span></div>
+            <div class="body">
+              <div class="ui-h">Query profile: orders by status</div>
+              <div class="ui-sub">db.orders.find({ status: "shipped" }).sort({ createdAt: -1 })</div>
+              <div class="stage bad hot"><span class="pin">1</span><span class="grow"><b>COLLSCAN</b> · every document read</span><span class="chip crit">slow</span></div>
+              <div class="stage"><span style="width:20px"></span><span class="grow">docsExamined</span><span>1,200,000</span></div>
+              <div class="stage"><span style="width:20px"></span><span class="grow">nReturned</span><span>42</span></div>
+              <div class="stage bad hot" style="margin-top:14px"><span class="pin">2</span><span class="grow"><b>$lookup</b> → customers.customerId</span><span class="chip warn">no index</span></div>
+              <div class="stage"><span style="width:20px"></span><span class="grow">executionTimeMillis</span><span>1,240</span></div>
+            </div>
+          </div>
+          <div class="win">
+            <div class="bar"><span class="url">shop.orders.getIndexes()</span></div>
+            <div class="body">
+              <div class="ui-h">Indexes on orders</div>
+              <div class="ui-sub">4 indexes · 310 MB</div>
+              <div class="row"><span class="k">{ _id: 1 }</span><span class="chip ok">used</span></div>
+              <div class="row"><span class="k">{ customerId: 1 }</span><span class="chip ok">used</span></div>
+              <div class="hot" style="margin-top:6px;padding:0 6px">
+                <div class="row"><span class="k"><span class="pin" style="margin-right:8px">3</span>{ status: 1 }</span><span class="chip warn">redundant</span></div>
+                <div class="row"><span class="k" style="padding-left:28px">{ status: 1, region: 1 }</span><span class="chip info">covers #3</span></div>
+              </div>
+              <div class="code" style="margin-top:14px">// every write updates all 4 indexes
+// { status: 1 } is a prefix of
+// { status: 1, region: 1 }</div>
+            </div>
+          </div>
+        </div>
+        <div class="caption"><span><b>Sample database.</b> Figures are illustrative, from the demo dataset.</span></div>
+      </div>
+      <div class="notes">
+        <div class="note"><h4><span class="pin">1</span>Full collection scan</h4><p>No index matches the filter and sort, so MongoDB reads 1.2M documents to return 42.</p><p class="fix">Suggest a compound index on { status, createdAt }.</p></div>
+        <div class="note"><h4><span class="pin">2</span>Unindexed $lookup</h4><p>The join runs a scan on customers once per order, so cost grows with both collections.</p><p class="fix">Index the foreign field the join reads.</p></div>
+        <div class="note"><h4><span class="pin">3</span>Redundant index</h4><p>A prefix of another index. It costs storage and slows every write while adding no read benefit.</p><p class="fix">Drop it, keeping a one-click undo.</p></div>
+      </div>
+    </div>
+
+    <!-- User flow -->
+    <div class="block">
+      <div class="block-head">
+        <h3>The full journey, from connect to verified</h3>
+        <p>Five screens cover the whole job: find a problem, understand it, fix it safely, and prove the fix worked.</p>
+      </div>
+      <div class="board">
+        <div class="flow" tabindex="0" aria-label="Mongo Doctor user flow, scrolls sideways">
+          <figure>
+            <div class="win"><div class="bar"><span class="lg">Mongo Doctor</span></div><div class="body">
+              <div class="ui-h">Connect a database</div><div class="ui-sub">Read-only until you approve a fix.</div>
+              <div class="field">mongodb://localhost:27017/shop</div>
+              <div class="row" style="margin-top:8px"><span>Read-only mode</span><span class="chip ok">on</span></div>
+              <div style="margin-top:14px"><span class="btn pri">Connect &amp; scan</span></div>
+            </div></div>
+            <figcaption><b><span>01</span>Connect</b>Safe by default. Nothing is written without approval.</figcaption>
+          </figure>
+          <span class="arrow" aria-hidden="true">→</span>
+          <figure>
+            <div class="win"><div class="bar"><span class="lg">Mongo Doctor</span></div><div class="body">
+              <div class="ui-h">Scanning shop</div><div class="ui-sub">12 collections · 38 indexes</div>
+              <div class="prog"><i style="width:64%"></i></div>
+              <div class="row" style="margin-top:10px"><span class="k">orders</span><span class="chip ok">done</span></div>
+              <div class="row"><span class="k">customers</span><span class="chip ok">done</span></div>
+              <div class="row"><span class="k">products</span><span class="chip info">reading</span></div>
+              <div class="row"><span class="k">reviews</span><span class="ui-sub">queued</span></div>
+            </div></div>
+            <figcaption><b><span>02</span>Scan</b>Progress per collection, so a long scan never looks stuck.</figcaption>
+          </figure>
+          <span class="arrow" aria-hidden="true">→</span>
+          <figure>
+            <div class="win"><div class="bar"><span class="lg">Mongo Doctor</span></div><div class="body">
+              <div class="ui-h">3 findings</div><div class="ui-sub">Sorted by impact</div>
+              <div class="row"><span class="k">COLLSCAN on orders</span><span class="chip crit">critical</span></div>
+              <div class="row"><span class="k">$lookup without index</span><span class="chip warn">warning</span></div>
+              <div class="row"><span class="k">Redundant { status: 1 }</span><span class="chip info">info</span></div>
+              <div class="row"><span class="k">Schema: mixed types</span><span class="chip info">info</span></div>
+            </div></div>
+            <figcaption><b><span>03</span>Findings</b>Worst first. Severity in colour and in words.</figcaption>
+          </figure>
+          <span class="arrow" aria-hidden="true">→</span>
+          <figure>
+            <div class="win"><div class="bar"><span class="lg">Mongo Doctor</span></div><div class="body">
+              <div class="ui-h">Review fix</div><div class="ui-sub">COLLSCAN on orders</div>
+              <div class="code" style="margin-top:10px">createIndex(
+  { status: 1,
+    createdAt: -1 })</div>
+              <p class="ui-sub" style="margin-top:8px">Why: matches the filter and sort, so the query reads the index instead of every document.</p>
+              <div style="margin-top:10px;display:flex;gap:6px"><span class="btn pri">Apply</span><span class="btn">Skip</span></div>
+            </div></div>
+            <figcaption><b><span>04</span>Review fix</b>The exact command and a plain reason, before anything runs.</figcaption>
+          </figure>
+          <span class="arrow" aria-hidden="true">→</span>
+          <figure>
+            <div class="win"><div class="bar"><span class="lg">Mongo Doctor</span></div><div class="body">
+              <div class="ui-h">Fix verified</div><div class="ui-sub">explain() re-run after the change</div>
+              <div class="row"><span class="k">Plan</span><span><s class="ui-sub">COLLSCAN</s> → IXSCAN</span></div>
+              <div class="row"><span class="k">Docs examined</span><span><s class="ui-sub">1.2M</s> → 42</span></div>
+              <div class="row"><span class="k">Time</span><span><s class="ui-sub">1,240 ms</s> → 3 ms</span></div>
+              <div style="margin-top:12px;display:flex;gap:6px"><span class="chip ok">verified</span><span class="btn">Undo</span></div>
+            </div></div>
+            <figcaption><b><span>05</span>Verify</b>Measured proof, plus an undo if the change causes trouble.</figcaption>
+          </figure>
+        </div>
+        <div class="caption"><span><b>Core flow</b> · 5 screens</span><span>Scroll sideways →</span></div>
+      </div>
+    </div>
+
+    <!-- Recording -->
+    <div class="block">
+      <div class="block-head">
+        <h3>See it run</h3>
+        <p>A short recording of the scan-to-verify loop. Findings appear as each collection finishes, then the fix is applied and measured.</p>
+      </div>
+      <div class="board tint">
+        <div class="rec">
+          <div style="position:relative;min-width:0">
+            <div class="rec-top"><span class="rec-dot" aria-hidden="true"></span><span>REC</span><span id="rec-time">00:00</span><span style="margin-left:auto">sample data</span></div>
+            <div class="win" id="rec-win">
+              <div class="bar"><span class="lg">Mongo Doctor</span><span class="url">localhost:4000/scan/shop</span></div>
+              <div class="body">
+                <div class="ui-h" id="rec-title">Scanning shop</div>
+                <div class="ui-sub" id="rec-sub">Reading collections and query plans</div>
+                <div class="prog"><i id="rec-prog" style="width:0%;transition:width .8s ease"></i></div>
+                <div class="find off" id="f1"><span class="chip crit" id="f1c">critical</span><span class="grow"><b>COLLSCAN on orders</b><span>find({status}).sort({createdAt:-1})</span></span><span class="btn" id="f1b">Fix</span></div>
+                <div class="find off" id="f2"><span class="chip warn">warning</span><span class="grow"><b>$lookup without index</b><span>orders → customers.customerId</span></span><span class="btn">Fix</span></div>
+                <div class="find off" id="f3"><span class="chip info">info</span><span class="grow"><b>Redundant index</b><span>{status:1} covered by {status:1, region:1}</span></span><span class="btn">Fix</span></div>
+                <div class="bars" id="rec-bars" style="opacity:0">
+                  <div class="lbl"><span>before · COLLSCAN</span><span>1,240 ms</span></div>
+                  <div class="b" id="bb" style="width:100%;background:var(--crit)"></div>
+                  <div class="lbl"><span>after · IXSCAN</span><span id="ba-t">…</span></div>
+                  <div class="b" id="ba" style="width:100%;background:var(--ok)"></div>
+                </div>
+              </div>
+            </div>
+            <div class="cursor" id="cur" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M1 1l5.5 14 2-6 6-2z" fill="var(--ink)" stroke="var(--sheet)" stroke-width="1.2"/></svg></div>
+          </div>
+          <div>
+            <ol class="steps" id="rec-steps">
+              <li class="on"><span>Scan<small>Reads collections, indexes and plans</small></span></li>
+              <li><span>Find<small>Each issue appears as it is found</small></span></li>
+              <li><span>Fix<small>One click, after reviewing the command</small></span></li>
+              <li><span>Verify<small>explain() again; the numbers decide</small></span></li>
+            </ol>
+            <div class="ctrl"><button id="rec-play" type="button">Pause</button><button id="rec-restart" type="button">Replay</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Close-up -->
+    <div class="block">
+      <div class="block-head">
+        <h3>Close-up: the finding card</h3>
+        <p>The card people read most. Its visual weight drops with severity, so the one problem that matters stands out from the list.</p>
+      </div>
+      <div class="board">
+        <div class="zoom">
+          <div class="fcard crit">
+            <span class="chip crit">● Critical</span>
+            <h5>Full scan on orders</h5>
+            <div class="m">1.2M docs examined → 42 returned</div>
+            <div class="acts"><span class="btn pri">Review fix</span><span class="btn">Why?</span></div>
+          </div>
+          <div class="fcard warn">
+            <span class="chip warn">▲ Warning</span>
+            <h5>$lookup without index</h5>
+            <div class="m">customers.customerId · per-order scan</div>
+            <div class="acts"><span class="btn">Review fix</span></div>
+          </div>
+          <div class="fcard info">
+            <span class="chip info">i Info</span>
+            <h5>Redundant index</h5>
+            <div class="m">{status:1} is a prefix of {status:1, region:1}</div>
+            <div class="acts"><span class="btn">Details</span></div>
+          </div>
+        </div>
+        <div class="axis"><span>Higher emphasis</span><i></i><span>Lower emphasis</span></div>
+        <div class="notes" style="margin-top:22px">
+          <div class="note"><h4><span class="pin">A</span>Shape as well as colour</h4><p>Each severity has its own symbol and word, so it still reads for colour-blind users and on a greyscale screenshot.</p></div>
+          <div class="note"><h4><span class="pin">B</span>Evidence on the card</h4><p>The numbers that prove the problem sit under the title, so nobody has to open a details page to trust it.</p></div>
+          <div class="note"><h4><span class="pin">C</span>One primary button</h4><p>Only critical cards get the filled button. Lower severities stay quiet so they don't compete.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- States -->
+    <div class="block">
+      <div class="block-head">
+        <h3>Beyond the happy path</h3>
+        <p>A database tool spends a lot of time in states other than "findings ready". Each one tells you what's happening and what to do next.</p>
+      </div>
+      <div class="board tint">
+        <div class="states">
+          <figure>
+            <div class="win"><div class="bar"><span class="lg">Mongo Doctor</span></div><div class="body" style="height:calc(100% - 37px)">
+              <div class="ui-h">Scanning shop</div><div class="skel" style="width:90%"></div><div class="skel" style="width:70%"></div><div class="skel" style="width:80%"></div><div class="skel" style="width:55%"></div>
+              <p class="ui-sub" style="margin-top:12px">products · 4 of 12 collections</p>
+            </div></div>
+            <figcaption><b>Loading</b>Names the collection being read, so a slow scan looks busy, not frozen.</figcaption>
+          </figure>
+          <figure>
+            <div class="win"><div class="bar"><span class="lg">Mongo Doctor</span></div><div class="body" style="height:calc(100% - 37px)"><div class="center">
+              <div class="ico" style="background:var(--ok-bg);color:var(--ok)">✓</div>
+              <div class="ui-h">No problems found</div><p class="ui-sub">12 collections, 38 indexes checked. Next scheduled scan runs on the next CI build.</p>
+            </div></div></div>
+            <figcaption><b>Empty (healthy)</b>Says what was checked, so "nothing found" is a result you can trust.</figcaption>
+          </figure>
+          <figure>
+            <div class="win"><div class="bar"><span class="lg">Mongo Doctor</span></div><div class="body" style="height:calc(100% - 37px)"><div class="center">
+              <div class="ico" style="background:var(--crit-bg);color:var(--crit)">!</div>
+              <div class="ui-h">Couldn't reach the database</div><p class="ui-sub">Connection refused on port 27017. Check that mongod is running, or that Docker exposes the port.</p>
+              <span class="btn">Try again</span>
+            </div></div></div>
+            <figcaption><b>Error</b>Names the cause and the fix, with no stack trace in the user's face.</figcaption>
+          </figure>
+          <figure>
+            <div class="win"><div class="bar"><span class="lg">Mongo Doctor</span></div><div class="body" style="height:calc(100% - 37px)">
+              <div class="ui-h">Partial scan</div><div class="ui-sub">2 collections skipped</div>
+              <div class="row"><span class="k">orders</span><span class="chip ok">scanned</span></div>
+              <div class="row"><span class="k">audit_log</span><span class="chip warn">no access</span></div>
+              <div class="row"><span class="k">payments</span><span class="chip warn">no access</span></div>
+              <p class="ui-sub" style="margin-top:8px">Grant the user clusterMonitor to include them.</p>
+            </div></div>
+            <figcaption><b>Partial</b>Results stay useful when permissions are tight, and it says what's missing.</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="split" style="margin-top:16px">
+        <div class="term"><span class="d">$ npx mongo-doctor ci --fail-on critical</span>
+<span class="d">scanning shop … 12 collections</span>
+<span class="r">✖ critical</span>  COLLSCAN on orders.find({status})
+<span class="y">▲ warning</span>   $lookup without index → customers
+<span class="d">i info</span>      redundant index {status:1}
+
+<span class="r">Build failed: 1 critical finding.</span>
+<span class="d">Run `mongo-doctor fix --id 1` to review.</span></div>
+        <div class="term"><span class="d">$ npm test</span>
+
+<span class="g">✓</span> detects COLLSCAN from explain output
+<span class="g">✓</span> flags $lookup on unindexed field
+<span class="g">✓</span> finds prefix-redundant indexes
+<span class="g">✓</span> undo restores dropped index
+<span class="d">  … 21 more</span>
+
+<span class="g">25 passing</span></div>
+      </div>
+      <div class="caption"><span><b>CI gate</b> fails the build on critical findings, so problems are caught before deploy.</span></div>
+    </div>
+
+    <div class="outcome">
+      <div><b>Every fix</b><span>re-measured with explain() before and after</span></div>
+      <div><b>25 tests</b><span>covering detection, fixes and undo</span></div>
+      <div><b>CI gate</b><span>blocks builds with critical findings</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COURTROOM ============ -->
+<section class="case" id="courtroom">
+  <div class="wrap">
+    <div class="case-head">
+      <div>
+        <p class="eyebrow">Case study · Responsible AI</p>
+        <h2>Autonomous Courtroom</h2>
+        <p class="sum">One LLM answering a legal question will sound confident whether it is right or not. This pipeline makes separate agents argue for and against, checks for contradictions in the sources, and only then lets a judge agent rule, with a confidence score attached.</p>
+      </div>
+      <dl class="meta">
+        <dt>Role</dt><dd>Solo: agent design, data, UI</dd>
+        <dt>Stack</dt><dd>Python, RAG, NVIDIA NIM (Llama 3.1 70B), SQLite, Streamlit</dd>
+        <dt>Data</dt><dd>Live from India Code and US GovInfo APIs</dd>
+        <dt>When</dt><dd>April 2026</dd>
+      </dl>
+    </div>
+
+    <div class="block">
+      <div class="block-head">
+        <h3>How a case moves through the agents</h3>
+        <p>Prosecution and defence work from the same retrieved sources, so neither side can invent its own facts.</p>
+      </div>
+      <div class="board">
+        <div class="pipe" tabindex="0" aria-label="Agent pipeline, scrolls sideways">
+          <div class="pnode src"><span class="eyebrow">Sources</span><b>India Code · GovInfo</b><span>Statutes pulled live via API</span></div>
+          <span class="plink"></span>
+          <div class="pnode"><span class="eyebrow">Agent</span><b>Retrieval</b><span>Finds the relevant sections (RAG)</span></div>
+          <span class="plink"></span>
+          <div class="pnode"><span class="eyebrow">Agent</span><b>Contradiction</b><span>Flags sources that disagree</span></div>
+          <span class="plink"></span>
+          <div class="fork">
+            <div class="pnode"><span class="eyebrow">Agent</span><b>Prosecution</b><span>Strongest case for</span></div>
+            <div class="pnode"><span class="eyebrow">Agent</span><b>Defence</b><span>Strongest case against</span></div>
+          </div>
+          <span class="plink"></span>
+          <div class="pnode judge"><span class="eyebrow">Agent</span><b>Judge</b><span>Weighs both, cites sources</span></div>
+          <span class="plink"></span>
+          <div class="pnode src"><span class="eyebrow">Output</span><b>Ruling + confidence</b><span>Stored in SQLite, shown in Streamlit</span></div>
+        </div>
+        <div class="caption"><span><b>7-agent pipeline</b> · the main stages shown</span><span>Scroll sideways →</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-head">
+        <h3>The ruling screen, annotated</h3>
+        <p>Three decisions keep the output explainable instead of a black box.</p>
+      </div>
+      <div class="board tint">
+        <div class="win" style="max-width:760px;margin:0 auto">
+          <div class="bar"><span class="url">localhost:8501 · Autonomous Courtroom</span></div>
+          <div class="body" style="padding:18px">
+            <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">
+              <div><div class="ui-h" style="font-size:16px">Ruling · Sample case 014</div><div class="ui-sub">Tenancy deposit dispute · jurisdiction: India</div></div>
+              <span class="chip ok">complete</span>
+            </div>
+            <div class="argcols hot" style="padding:4px">
+              <div class="arg"><span class="t"><span class="pin" style="margin-right:6px">1</span>Prosecution</span><p>Landlord withheld the deposit beyond the period allowed in the agreement.</p><span class="cite">§ source 1 · retrieved section</span></div>
+              <div class="arg"><span class="t">Defence</span><p>Deductions for damage were documented and notified in writing.</p><span class="cite">§ source 2 · retrieved section</span></div>
+            </div>
+            <div class="arg" style="margin-top:10px"><span class="t">Judge</span><p style="font-size:12.5px">Partial refund. The defence's documented deductions are accepted; the remainder was withheld without basis.</p>
+              <span class="cite hot" style="display:inline-block;padding:2px 4px"><span class="pin" style="margin-right:6px">2</span>Cites source 1 §, source 2 §</span>
+              <div class="conf hot" style="padding:4px"><span class="pin">3</span><span class="ui-sub">Confidence</span><span class="track"><i style="width:72%;background:var(--warn)"></i></span><b>0.72</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="caption"><span><b>Illustrative case.</b> Text written for this mockup, not a real ruling.</span></div>
+      </div>
+      <div class="notes">
+        <div class="note"><h4><span class="pin">1</span>Both sides, side by side</h4><p>The reader sees the strongest argument against the ruling, not just the conclusion.</p></div>
+        <div class="note"><h4><span class="pin">2</span>Every claim cites a source</h4><p>Citations point back to the retrieved statute, so a person can check the reasoning.</p></div>
+        <div class="note"><h4><span class="pin">3</span>Confidence on screen</h4><p>The score is shown with every ruling, so a shaky answer looks shaky.</p></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-head">
+        <h3>Close-up: confidence at three levels</h3>
+        <p>The same component reads differently as certainty drops.</p>
+      </div>
+      <div class="board">
+        <div class="zoom">
+          <div class="fcard"><span class="chip ok">High</span><h5>Sources agree</h5><div class="m">No contradictions found</div><div class="conf"><span class="track"><i style="width:91%;background:var(--ok)"></i></span><b>0.91</b></div></div>
+          <div class="fcard"><span class="chip warn">Medium</span><h5>Arguments close</h5><div class="m">Both sides cite valid sections</div><div class="conf"><span class="track"><i style="width:64%;background:var(--warn)"></i></span><b>0.64</b></div></div>
+          <div class="fcard crit"><span class="chip crit">Low</span><h5>Sources conflict</h5><div class="m">Contradiction agent flagged 2 sections</div><div class="conf"><span class="track"><i style="width:38%;background:var(--crit)"></i></span><b>0.38</b></div></div>
+        </div>
+        <div class="axis"><span>More certain</span><i></i><span>Less certain</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-head">
+        <h3>States</h3>
+        <p>Seven agents take time, and live APIs fail. The screen says which.</p>
+      </div>
+      <div class="board tint">
+        <div class="states">
+          <figure>
+            <div class="win"><div class="bar"><span class="url">Courtroom</span></div><div class="body">
+              <div class="ui-h">Deliberating</div>
+              <div class="row"><span class="k">Retrieval</span><span class="chip ok">done</span></div>
+              <div class="row"><span class="k">Contradiction</span><span class="chip ok">done</span></div>
+              <div class="row"><span class="k">Prosecution</span><span class="chip info">writing</span></div>
+              <div class="row"><span class="k">Defence</span><span class="chip info">writing</span></div>
+              <div class="row"><span class="k">Judge</span><span class="ui-sub">waiting</span></div>
+            </div></div>
+            <figcaption><b>Working</b>Shows which agent is running.</figcaption>
+          </figure>
+          <figure>
+            <div class="win"><div class="bar"><span class="url">Courtroom</span></div><div class="body">
+              <div class="ui-h">Sources disagree</div><div class="ui-sub">Contradiction agent</div>
+              <div class="stage bad" style="margin-top:12px"><span class="grow">Section A sets 30 days</span></div>
+              <div class="stage bad"><span class="grow">Section B sets 60 days</span></div>
+              <p class="ui-sub" style="margin-top:8px">Both are passed to the judge, and confidence is lowered.</p>
+            </div></div>
+            <figcaption><b>Conflict</b>Disagreement is surfaced, not hidden.</figcaption>
+          </figure>
+          <figure>
+            <div class="win"><div class="bar"><span class="url">Courtroom</span></div><div class="body" style="height:calc(100% - 37px)"><div class="center">
+              <div class="ico" style="background:var(--crit-bg);color:var(--crit)">!</div>
+              <div class="ui-h">GovInfo didn't respond</div><p class="ui-sub">US statutes couldn't be loaded. India Code results are ready.</p><span class="btn">Retry GovInfo</span>
+            </div></div></div>
+            <figcaption><b>Source down</b>Says which source failed.</figcaption>
+          </figure>
+          <figure>
+            <div class="win"><div class="bar"><span class="url">Courtroom</span></div><div class="body" style="height:calc(100% - 37px)"><div class="center">
+              <div class="ico" style="background:var(--info-bg);color:var(--info)">?</div>
+              <div class="ui-h">No matching law found</div><p class="ui-sub">Retrieval found no relevant sections, so no ruling was made. Try adding the jurisdiction.</p>
+            </div></div></div>
+            <figcaption><b>No sources</b>Refuses to rule on nothing.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BERT ============ -->
+<section class="case" id="bert">
+  <div class="wrap">
+    <div class="case-head">
+      <div>
+        <p class="eyebrow">Case study · Final-year project</p>
+        <h2>MiniBioClinicalBERT</h2>
+        <p class="sum">A transformer-based classifier for clinical text. Clinical notes are sensitive, so the pipeline handles data integrity and governance at each step, not as an afterthought.</p>
+      </div>
+      <dl class="meta">
+        <dt>Role</dt><dd>Solo, supervised</dd>
+        <dt>Stack</dt><dd>PyTorch, Hugging Face Transformers</dd>
+        <dt>When</dt><dd>Oct 2025 – Apr 2026</dd>
+        <dt>Result</dt><dd>First Class Honours degree</dd>
+      </dl>
+    </div>
+    <div class="block">
+      <div class="block-head">
+        <h3>From raw note to prediction</h3>
+        <p>Each stage is a separate, testable step in the training pipeline.</p>
+      </div>
+      <div class="board">
+        <div class="pipe" tabindex="0" aria-label="Training pipeline, scrolls sideways">
+          <div class="pnode src"><span class="eyebrow">Input</span><b>Clinical text</b><span>Sensitive notes</span></div><span class="plink"></span>
+          <div class="pnode"><span class="eyebrow">Step</span><b>Safeguards</b><span>Integrity checks, de-identified fields</span></div><span class="plink"></span>
+          <div class="pnode"><span class="eyebrow">Step</span><b>Preprocess</b><span>Structured cleaning, tokenisation</span></div><span class="plink"></span>
+          <div class="pnode"><span class="eyebrow">Step</span><b>Train</b><span>Fine-tune compact BERT</span></div><span class="plink"></span>
+          <div class="pnode"><span class="eyebrow">Step</span><b>Evaluate</b><span>Held-out evaluation pipeline</span></div><span class="plink"></span>
+          <div class="pnode judge"><span class="eyebrow">Output</span><b>Class label</b><span>Per note</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="block">
+      <div class="board tint">
+        <div class="bert">
+          <div class="win"><div class="bar"><span class="url">inference · sample note</span></div><div class="body">
+            <div class="ui-h">Input</div>
+            <p class="ui-sub" style="font-size:12px;margin-top:4px">"Patient reports chest tightness on exertion, relieved by rest. [NAME] advised follow-up."</p>
+            <div class="tok"><span>[CLS]</span><span>patient</span><span>reports</span><span class="r">chest</span><span class="r">tight</span><span class="r">##ness</span><span>on</span><span class="r">exertion</span><span>relieved</span><span>by</span><span>rest</span><span class="hot">[NAME]</span><span>[SEP]</span></div>
+          </div></div>
+          <div class="notes" style="grid-template-columns:1fr;margin-top:0">
+            <div class="note"><h4><span class="pin">1</span>Identifiers masked before training</h4><p>Names and other identifiers are replaced with tokens, so the model never learns from them.</p></div>
+            <div class="note"><h4><span class="pin">2</span>Subword tokens</h4><p>Clinical terms like "tightness" split into known pieces, which keeps the model small without losing medical vocabulary.</p></div>
+          </div>
+        </div>
+        <div class="caption"><span><b>Sample sentence</b> written for illustration, not patient data.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OTHER ============ -->
+<section class="case" id="other" style="padding-top:72px">
+  <div class="wrap">
+    <p class="eyebrow">More projects</p>
+    <h2 style="font-size:clamp(30px,4vw,44px);font-weight:800;margin:12px 0 28px">Smaller builds</h2>
+    <div class="cards">
+      <div class="wcard"><span class="eyebrow">Python · TensorFlow · Pandas · 2025</span><h3>Customer Churn Prediction</h3><p>An artificial neural network with feature engineering. Results were turned into churn-risk segments a retention team could act on, rather than a raw probability per customer.</p></div>
+      <div class="wcard"><span class="eyebrow">Python · scikit-learn · Matplotlib · 2024</span><h3>Heart Disease Risk Prediction</h3><p>Cleaned clinical data and compared Random Forest, SVM and Logistic Regression. Random Forest reached 81% accuracy, and risk trends were charted for non-technical readers.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="case" id="about" style="padding-top:96px">
+  <div class="wrap about">
+    <div>
+      <p class="eyebrow">About</p>
+      <h2 style="font-size:clamp(30px,4vw,44px);font-weight:800;margin-top:12px">Pipelines first, models second.</h2>
+      <p style="color:var(--muted);margin-top:16px;max-width:52ch">Most of my time at Alter Domus went into the parts nobody sees: validation, reconciliation and finding out why a pipeline failed at 3am. That is why my projects measure their own results. I explain findings clearly to technical and non-technical people, and I ran the DBS Chess Society as president.</p>
+      <dl class="skills">
+        <div><dt>Languages</dt><dd>Python, SQL, Java</dd></div>
+        <div><dt>Data eng</dt><dd>ETL/ELT, Airflow, Kafka, Snowflake, data quality &amp; reconciliation</dd></div>
+        <div><dt>Cloud</dt><dd>AWS (S3, RDS, EC2, VPC, IAM), Linux, Git, CI/CD</dd></div>
+        <div><dt>GenAI</dt><dd>RAG, multi-agent LLMs, LangGraph, FAISS, NVIDIA NIM</dd></div>
+        <div><dt>ML</dt><dd>PyTorch, TensorFlow, scikit-learn, Hugging Face</dd></div>
+        <div><dt>BI</dt><dd>Power BI, Tableau, MySQL, SQLite</dd></div>
+      </dl>
+    </div>
+    <ul class="tl">
+      <li><span class="when">Jun 2024 – May 2026</span><div><b>Data Engineer Intern · Alter Domus, Dublin</b><span>Built and maintained ETL/ELT pipelines from multiple business sources. Ran validation and reconciliation checks between source and target systems, optimised SQL on large datasets, automated recurring jobs, and traced pipeline failures to root cause.</span></div></li>
+      <li><span class="when">Jan 2023 – Jun 2026</span><div><b>BSc (Hons) Computing · Dublin Business School</b><span>Data Analytics and Big Data. First Class Honours (1:1).</span></div></li>
+      <li><span class="when">Certifications</span><div><b>Kaggle &amp; cloud</b><span>Machine Learning, Intermediate ML, SQL, Pandas, Data Cleaning, Data Visualization; Introduction to Cloud Computing.</span></div></li>
+      <li><span class="when">Languages</span><div><b>English, Hindi, Marathi</b><span>German (elementary)</span></div></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--term-dim)">Contact</p>
+    <h2 style="margin-top:14px">Hiring for data engineering<br>or graduate data roles? <span class="hl">Let's talk.</span></h2>
+    <div class="contact">
+      <div><span class="eyebrow">Email</span><p class="mono" id="em">jaydhobale08@gmail.com</p><button class="copy" type="button" data-copy="em">Copy email</button></div>
+      <div><span class="eyebrow">Phone</span><p class="mono" id="ph">+353 89 221 6717</p><button class="copy" type="button" data-copy="ph">Copy number</button></div>
+      <div><span class="eyebrow">LinkedIn</span><p><a href="https://linkedin.com/in/jay-dhobale" target="_blank" rel="noopener">linkedin.com/in/jay-dhobale</a></p></div>
+      <div><span class="eyebrow">GitHub</span><p><a href="https://github.com/jaydhobale2004" target="_blank" rel="noopener">github.com/jaydhobale2004</a></p></div>
+    </div>
+    <p class="fine">Dublin, Ireland · Product screens on this page are mockups built with sample data.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // copy buttons
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var el=document.getElementById(b.dataset.copy), t=el.textContent, orig=b.textContent;
+      function done(){b.textContent='Copied';setTimeout(function(){b.textContent=orig},1600)}
+      function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected, press Ctrl+C';setTimeout(function(){b.textContent=orig},2200)}
+      try{navigator.clipboard.writeText(t).then(done,sel)}catch(e){sel()}
+    });
+  });
+
+  // recording
+  var $=function(id){return document.getElementById(id)};
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var steps=[].slice.call(document.querySelectorAll('#rec-steps li'));
+  var timers=[], playing=true, t0=0, clock=null, elapsed=0;
+  function setStep(i){steps.forEach(function(s,j){s.classList.toggle('on',j===i)})}
+  function cursorTo(target){
+    var cur=$('cur'), box=cur.parentElement.getBoundingClientRect(), r=target.getBoundingClientRect();
+    cur.style.opacity=1; cur.style.left=(r.left-box.left+r.width/2-3)+'px'; cur.style.top=(r.top-box.top+r.height/2-3)+'px';
+  }
+  function reset(){
+    $('rec-title').textContent='Scanning shop'; $('rec-sub').textContent='Reading collections and query plans';
+    $('rec-prog').style.width='0%';
+    ['f1','f2','f3'].forEach(function(id){$(id).classList.add('off');$(id).classList.remove('fixed')});
+    $('f1c').className='chip crit'; $('f1c').textContent='critical'; $('f1b').textContent='Fix';
+    $('rec-bars').style.opacity=0; $('ba').style.width='100%'; $('ba-t').textContent='…';
+    $('cur').style.opacity=0; $('cur').style.left='60%'; $('cur').style.top='90%';
+    setStep(0);
+  }
+  var script=[
+    [300,function(){$('rec-prog').style.width='35%'}],
+    [1100,function(){$('rec-prog').style.width='60%';$('f1').classList.remove('off');setStep(1)}],
+    [1900,function(){$('rec-prog').style.width='85%';$('f2').classList.remove('off')}],
+    [2600,function(){$('rec-prog').style.width='100%';$('f3').classList.remove('off');$('rec-title').textContent='3 findings';$('rec-sub').textContent='Sorted by impact'}],
+    [3500,function(){cursorTo($('f1b'));setStep(2)}],
+    [4500,function(){$('f1b').textContent='Applying…'}],
+    [5300,function(){$('f1').classList.add('fixed');$('f1c').className='chip ok';$('f1c').textContent='fixed';$('f1b').textContent='Undo';$('cur').style.opacity=0;$('rec-bars').style.opacity=1;setStep(3)}],
+    [6000,function(){$('ba').style.width='2%';$('ba-t').textContent='3 ms';$('rec-title').textContent='Fix verified';$('rec-sub').textContent='explain() re-run: COLLSCAN → IXSCAN'}],
+    [9500,function(){run()}]
+  ];
+  function finalState(){script.slice(0,8).forEach(function(s){s[1]()});$('cur').style.opacity=0}
+  function clear(){timers.forEach(clearTimeout);timers=[];clearInterval(clock)}
+  function tick(){var s=Math.floor((Date.now()-t0)/1000);$('rec-time').textContent='00:0'+Math.min(s,9)}
+  function run(){
+    clear(); reset(); t0=Date.now(); clock=setInterval(tick,250);
+    script.forEach(function(s){timers.push(setTimeout(s[1],s[0]))});
+  }
+  $('rec-play').addEventListener('click',function(){
+    if(playing){clear();finalState();playing=false;this.textContent='Play'}
+    else{playing=true;this.textContent='Pause';run()}
+  });
+  $('rec-restart').addEventListener('click',function(){playing=true;$('rec-play').textContent='Pause';run()});
+  if(reduce){finalState();playing=false;$('rec-play').textContent='Play'}else{run()}
+})();
+</script>
+</body>
+</html>
